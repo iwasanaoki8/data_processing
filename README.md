@@ -1,3 +1,5 @@
+※本内容は、git のREADMEと同じものです。
+
 ### ＜課題内容＞
 
 https://drive.google.com/file/d/1D13bXxD7vALnK0KHhFF7rGo1EKIL5y14/view?usp=drive_link
@@ -6,9 +8,11 @@ https://drive.google.com/file/d/1D13bXxD7vALnK0KHhFF7rGo1EKIL5y14/view?usp=drive
 
 - 課題内容から(sales.csv)のコピーを作成
 - (sales.csv)のコピーをRubyで読み込む
-- 問に合わせたRubyプログラムを実行し、目的の結果を取得する
+- 問に合わせたRubyプログラム(リポジトリ有り)を実行し、目的の結果を取得する
 
 ### ＜作成したソース＞
+
+https://github.com/iwasanaoki8/data_processing
 
 コマンドを実行していただくことで下記の結果が得られます。
 
@@ -229,3 +233,23 @@ end
 4. ３で作成したデータで比較（salesの合計値が最大であるものをピックアップ）
 
 ↓実行コード↓
+
+```ruby
+# ＜問題4の解答＞
+# 年月別、店舗別、商品別の売上集計
+sales_by_month_store_product = Hash.new { |h, k| h[k] = Hash.new { |h2, k2| h2[k2] = Hash.new(0) } }
+cleaned_csv.each do |row|
+  month = row['sales_date'].strftime('%Y-%m')
+  store = row['store']
+  product = row['product_name']
+  sales_by_month_store_product[month][store][product] += row['sales'].to_i
+end
+
+# 東京の売上が最も大きかった月の最も売り上げた商品を選ぶ
+tokyo_sales_by_month = sales_by_month_store_product.map { |month, stores| [month, stores['東京'].values.sum] }.to_h
+max_sales_month = tokyo_sales_by_month.max_by { |_, sales| sales }[0]
+max_sales_product_in_month = sales_by_month_store_product[max_sales_month]['東京'].max_by { |_, sales| sales }[0]
+
+puts "東京の最も売上が大きかった月: #{max_sales_month}"
+puts "東京の最も売上が大きかった月の最も売り上げた商品名: #{max_sales_product_in_month}"
+```
