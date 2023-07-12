@@ -8,7 +8,7 @@ https://drive.google.com/file/d/1D13bXxD7vALnK0KHhFF7rGo1EKIL5y14/view?usp=drive
 - (sales.csv)のコピーをRubyで読み込む
 - 問に合わせたRubyプログラムを実行し、目的の結果を取得する
 
-### ＜作成したソースのリポジトリ＞
+### ＜作成したソース＞
 
 コマンドを実行していただくことで下記の結果が得られます。
 
