@@ -1,5 +1,3 @@
-※本内容は、git のREADMEと同じものです。
-
 ### ＜課題内容＞
 
 https://drive.google.com/file/d/1D13bXxD7vALnK0KHhFF7rGo1EKIL5y14/view?usp=drive_link
